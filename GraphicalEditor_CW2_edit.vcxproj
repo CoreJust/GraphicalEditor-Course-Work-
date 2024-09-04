@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\libpng-v142.1.6.37.2\build\native\libpng-v142.props" Condition="Exists('..\packages\libpng-v142.1.6.37.2\build\native\libpng-v142.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{69AFB01A-BCFD-4367-ADA8-C4E4AA2C963E}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>6.7.0_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>6.7.0_msvc2019_64</QtInstall>
+    <QtModules>core</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;$(Qt_DEFINES_);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\libs\lpng1643;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\libs\lpng1643\projects\visualc71\Win32_LIB_Release;C:\libs\lpng1643\projects\visualc71\Win32_LIB_Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libpng.lib;libpngd.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\libs\lpng1643;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\libs\lpng1643\projects\visualc71\Win32_LIB_Release;C:\libs\lpng1643\projects\visualc71\Win32_LIB_Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libpng.lib;libpngd.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="GUI\ColorChoiceWindow.cpp" />
+    <ClCompile Include="GUI\ColorLabel.cpp" />
+    <ClCompile Include="GUI\CustomInputDialog.cpp" />
+    <ClCompile Include="GUI\CW2_GraphicalEditor.cpp" />
+    <ClCompile Include="GUI\EditSlider.cpp" />
+    <ClCompile Include="GUI\FilePathEdit.cpp" />
+    <ClCompile Include="GUI\HelpWindow.cpp" />
+    <ClCompile Include="GUI\ImageEditScene.cpp" />
+    <ClCompile Include="GUI\ImageWindow.cpp" />
+    <ClCompile Include="GUI\LineWidget.cpp" />
+    <ClCompile Include="GUI\PointChoiceEdit.cpp" />
+    <ClCompile Include="GUI\ProgressDialog.cpp" />
+    <ClCompile Include="GUI\ToolType.cpp" />
+    <ClCompile Include="Image\Color.cpp" />
+    <ClCompile Include="Image\Image.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Script\Compiler.cpp" />
+    <ClCompile Include="Script\Compiler\ast\BinaryExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\BlockState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\BuiltInExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\BuiltInState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\Expr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\ExprState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\FieldAccessExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\ForState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\FunctionCallExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\FunctionDefState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\IfElseState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\SetState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\TerminatorState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\UnaryExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\ValueExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\VariableDeclState.cpp" />
+    <ClCompile Include="Script\Compiler\ast\VariableExpr.cpp" />
+    <ClCompile Include="Script\Compiler\ast\WhileState.cpp" />
+    <ClCompile Include="Script\Compiler\ByteCodeBuilder.cpp" />
+    <ClCompile Include="Script\Compiler\Lexer.cpp" />
+    <ClCompile Include="Script\Compiler\Parser.cpp" />
+    <ClCompile Include="Script\CW2VM.cpp" />
+    <ClCompile Include="Script\Instruction.cpp" />
+    <ClCompile Include="Utils\MathUtils.cpp" />
+    <ClCompile Include="Utils\Rasterization.cpp" />
+    <ClCompile Include="Utils\Result.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="GUI\ColorChoiceWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="GUI\ColorLabel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GUI\CustomInputDialog.h" />
+    <ClInclude Include="GUI\LineWidget.h" />
+    <ClInclude Include="GUI\ProgressDialog.h" />
+    <ClInclude Include="GUI\ToolType.h" />
+    <ClInclude Include="Image\Color.h" />
+    <ClInclude Include="Image\Image.h" />
+    <ClInclude Include="Script\Compiler.h" />
+    <ClInclude Include="Script\Compiler\ast\BinaryExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\BlockState.h" />
+    <ClInclude Include="Script\Compiler\ast\BuiltInExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\BuiltInState.h" />
+    <ClInclude Include="Script\Compiler\ast\Expr.h" />
+    <ClInclude Include="Script\Compiler\ast\ExprState.h" />
+    <ClInclude Include="Script\Compiler\ast\FieldAccessExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\ForState.h" />
+    <ClInclude Include="Script\Compiler\ast\FunctionCallExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\FunctionDefState.h" />
+    <ClInclude Include="Script\Compiler\ast\IfElseState.h" />
+    <ClInclude Include="Script\Compiler\ast\SetState.h" />
+    <ClInclude Include="Script\Compiler\ast\State.h" />
+    <ClInclude Include="Script\Compiler\ast\TerminatorState.h" />
+    <ClInclude Include="Script\Compiler\ast\Type.h" />
+    <ClInclude Include="Script\Compiler\ast\UnaryExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\ValueExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\VariableDeclState.h" />
+    <ClInclude Include="Script\Compiler\ast\VariableExpr.h" />
+    <ClInclude Include="Script\Compiler\ast\WhileState.h" />
+    <ClInclude Include="Script\Compiler\ByteCodeBuilder.h" />
+    <ClInclude Include="Script\Compiler\Lexer.h" />
+    <ClInclude Include="Script\Compiler\Parser.h" />
+    <ClInclude Include="Script\Compiler\Token.h" />
+    <ClInclude Include="Script\Instruction.h" />
+    <ClInclude Include="Utils\Buffer.h" />
+    <ClInclude Include="Utils\MathUtils.h" />
+    <ClInclude Include="Utils\Rasterization.h" />
+    <ClInclude Include="Utils\Result.h" />
+    <ClInclude Include="Utils\ScopeExit.h" />
+    <ClInclude Include="Utils\Void.h" />
+    <QtMoc Include="Script\CW2VM.h" />
+    <QtMoc Include="GUI\PointChoiceEdit.h" />
+    <QtMoc Include="GUI\ImageWindow.h" />
+    <QtMoc Include="GUI\ImageEditScene.h" />
+    <QtMoc Include="GUI\HelpWindow.h" />
+    <QtMoc Include="GUI\FilePathEdit.h" />
+    <QtMoc Include="GUI\EditSlider.h" />
+    <QtMoc Include="GUI\CW2_GraphicalEditor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\libpng-v142.1.6.37.2\build\native\libpng-v142.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\libpng-v142.1.6.37.2\build\native\libpng-v142.props'))" />
+  </Target>
+</Project>

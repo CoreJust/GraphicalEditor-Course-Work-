@@ -1,0 +1,30 @@
+def draw_star(Number seed, Number isShining) {
+	let Number posoff = (seed * 11351245 + exp(seed) + 1017) % (Width * Height)
+	let Point pos = Point(posoff % Width, posoff / Height)
+	
+	fill_circle pos, 3
+	
+	if isShining {
+		draw_line Point(pos.x - 5, pos.y), Point(pos.x + 6, pos.y)
+		draw_line Point(pos.x, pos.y + 6), Point(pos.x, pos.y - 5)
+	}
+}
+
+set_image 0
+set_width 1
+
+global Number mod = 0
+while 1 {
+	set_color Color(0, 0, 64, 255)
+	fill_rect Point(0, 0), Point(Width, Height)
+
+	set_color Color(255, 255, 255, 255)
+	
+	for i in range(0, 25) {
+		call draw_star(i, (i + mod) % 2)
+	}
+	
+	update
+	set mod to mod + 1
+	sleep 300
+}

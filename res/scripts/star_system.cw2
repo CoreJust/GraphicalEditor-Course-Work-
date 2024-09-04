@@ -1,0 +1,77 @@
+set_image 0
+
+global Number r1 = 9
+global Number r2 = 2 #4
+
+# Mass in 10^11 kg
+global Number mass1 = r1*r1
+global Number mass2 = r2*r2
+
+global Point star1 = Point(Width / 2, Height / 2)
+global Point star2 = Point(Width / 4, Height / 2)
+
+global Point vel1 = Point(0, 0.2)
+global Point vel2 = Point(0.9, 2)
+
+# Actually G * 10^11
+global Number G = 6.6743
+
+global Point center = Point(Width / 2, Height / 2)
+
+# On must be normalized
+def reflect(Point vec, Point on) Point = vec - 2 * on * (vec.x * on.x + vec.y * on.y)
+
+def calculate() {
+	# From the second star to the first one
+	let Point radiusVec = star1 - star2
+	let Number r = length(radiusVec)
+	set radiusVec to radiusVec / r
+	if (r > r1 + r2) {
+		let Number force = G / (r * r)
+		
+		set vel2 to vel2 + radiusVec * force * mass1
+		set vel1 to vel1 - radiusVec * force * mass2
+	} else { # Collision
+		set vel1 to reflect(vel1, radiusVec)
+		set vel2 to reflect(vel2, -radiusVec)
+	}
+	
+	# From the first star to the center (so that it doesn't fly away)
+	set r to distance(center, star1)
+	if r > 150 {
+		set radiusVec to (center - star1) / r
+		set vel1 to vel1 + radiusVec * log(r) * 0.02
+	}
+	
+	set r to distance(center, star2)
+	if r > 200 {
+		set radiusVec to (center - star2) / r
+		set vel2 to vel2 + radiusVec * log(r) * 0.015
+	}
+	
+	set star1 to star1 + vel1
+	set star2 to star2 + vel2
+}
+
+def render() {
+	set_color Color(64, 64, 196, 255)
+	fill_rect Point(0, 0), Point(Width, Height)
+	
+	if (star1.x > 0 && star1.y > 0 && star1.x < Width && star1.y < Height) {
+		set_color Color(168, 168, 0, 255)
+		fill_circle star1, r1
+	}
+	
+	if (star2.x > 0 && star2.y > 0 && star2.x < Width && star2.y < Height) {
+		set_color Color(16, 196, 16, 255)
+		fill_circle star2, r2
+	}
+}
+
+while 1 {
+	call render()
+	call calculate()
+	
+	update
+	sleep 50
+}

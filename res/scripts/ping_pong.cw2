@@ -1,0 +1,44 @@
+set_image 0
+
+global Number rad = 4
+global Point ball = Point(rad, rad)
+global Point vel = Point(4, 6)
+global Number mod = 0
+
+def calculate() {
+	# updating mod
+	set mod to mod + 1
+	
+	# updating ball position
+	set ball to ball + vel
+	
+	if ball.x - rad <= 0 {
+		set ball.x to rad
+		set vel.x to -vel.x + ball.y % 3 - 1
+	} else if ball.x + rad >= Width {
+		set ball.x to Width - rad
+		set vel.x to -vel.x - ball.y % 3 + 1
+	}
+	
+	if ball.y - rad <= 0 {
+		set ball.y to rad
+		set vel.y to -vel.y - ball.x % 3 + 1
+	} else if ball.y + rad >= Height {
+		set ball.y to Height - rad
+		set vel.y to -vel.y + ball.x % 3 - 1
+	}
+}
+
+while 1 {
+	# backround
+	set_color Color(16, 16, 196, 255)
+	fill_rect Point(0, 0), Point(Width, Height)
+	
+	# ball
+	set_color Color(140 + sin(mod / 13) * 115, 128 + cos(mod / 12) * 127, 128 + sin(mod / 16) * 127, 255)
+	fill_circle ball, rad
+
+	update
+	call calculate()
+	sleep 40
+}
